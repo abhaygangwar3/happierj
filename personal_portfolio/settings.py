@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't!bi^kal==qf2b=0#n_$^l7qo!4h40(21ce^)1ky^4ayc=$bxw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['happierj.pythonanywhere.com']
 
 
 # Application definition
