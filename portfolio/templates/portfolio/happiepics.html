@@ -1,0 +1,21 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h2 class="mt-5 container text-center"><b>Happie Pics</b></h2>
+<hr>
+<div class="row" >
+    {% for pic in pics %}
+    <div class="col-lg-4 col-md-6 polar">
+
+        <img src="{{ pic.pic.url }}" class="img-fluid mb-2" height="600" width="900">
+        <div class="contra">
+            <p>{{ pic.pictitle }}</p>
+        </div>
+
+    </div>
+    {% endfor %}
+
+{% endblock %}
