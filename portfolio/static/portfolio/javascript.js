@@ -1,7 +1,7 @@
  $(document).ready(function()
  {
     var counter = 1;
-
+    var paused = false;
     var tot = $('.crop-img').data('id');
     console.log(tot);
     $('.crop-img').click(function(e)
@@ -47,4 +47,13 @@
         else if(e.which == 39)
         {nextpic();}
      });
+     $('#big-img').click(function(){
+        paused = !paused;
+        });
+     setInterval(function(){
+     if(!paused)
+     {
+        $('.next').click();
+     }
+     },3000);
  });
