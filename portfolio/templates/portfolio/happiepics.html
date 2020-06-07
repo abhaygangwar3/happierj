@@ -25,59 +25,12 @@
 <div class="row" >
     {% for pic in pics %}
     <div class="col-md-2 polar">
-        <img id="image{{ pic.id }}" src="{{ pic.pic.url }}" class="img-fluid mb-2 img-thumbnail crop-img" name="{{ pic.pictitle }}">
+        <img id="image{{ pic.id }}" data-id = {{ pics.count }} src="{{ pic.pic.url }}" class="img-fluid mb-2 img-thumbnail crop-img" name="{{ pic.pictitle }}">
     </div>
     {% endfor %}
 </div>
 
-<script>
-    var counter = 1;
-    var tot = {{ pics.count }};
-    console.log(tot);
-    $('.crop-img').click(function(e)
-    {
-        $(this).addClass('active');
-        $('#big-img').attr('src',$(this).attr('src'));
-        $('#pic-title').html($(this).attr('name'));
-        var id = $(this).attr("id");
-        counter = parseInt(id.slice(-1));
-    });
-     $('#image'+counter).click();
-     function nextpic()
-     {
-     counter++;
-     if(counter>tot)
-     {
-        counter = 1;
-     }
-     $('#image'+counter).click();
-     }
-     $('.next').click(function(){
-     nextpic();
-     });
-     function prevpic()
-     {
-        counter--;
-        if(counter<1)
-        {
-            counter = tot;
-        }
-        $('#image'+counter).click();
-     }
-     $('.prev').click(function()
-     {
-       prevpic();
-     });
-     $(document).keydown(function(e)
-     {
-        if(e.which == 37)
-        {
-            prevpic();
-        }
-        else if(e.which == 39)
-        {nextpic();}
-     });
-</script>
+
 
 
 {% endblock %}
