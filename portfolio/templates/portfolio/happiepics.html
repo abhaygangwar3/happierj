@@ -6,16 +6,78 @@
 
 <h2 class="mt-5 container text-center"><b>Happie Pics</b></h2>
 <hr>
+<br>
+<div class="row">
+    <div class="col-md-1">
+        <a class="prev">&lt;</a>
+    </div>
+    <div class="col-md-10 large-img text-center polar" id="main-viewer" style="background-color:#0000;">
+        <img src="{{ pics.first.pic.url }}" id="big-img" class="img-fluid">
+        <p id="pic-title">{{ pics.first.pictitle }}</p>
+    </div>
+    <div class="col-md-1">
+        <a class="next">&gt;</a>
+    </div>
+
+</div>
+
+
 <div class="row" >
     {% for pic in pics %}
-    <div class="col-lg-4 col-md-6 polar">
-
-        <img src="{{ pic.pic.url }}" class="img-fluid mb-2" height="600" width="900">
-        <div class="contra">
-            <p>{{ pic.pictitle }}</p>
-        </div>
-
+    <div class="col-md-2 polar">
+        <img id="image{{ pic.id }}" src="{{ pic.pic.url }}" class="img-fluid mb-2 img-thumbnail crop-img" name="{{ pic.pictitle }}">
     </div>
     {% endfor %}
+</div>
+
+<script>
+    var counter = 1;
+    var tot = {{ pics.count }};
+    console.log(tot);
+    $('.crop-img').click(function(e)
+    {
+        $(this).addClass('active');
+        $('#big-img').attr('src',$(this).attr('src'));
+        $('#pic-title').html($(this).attr('name'));
+        var id = $(this).attr("id");
+        counter = parseInt(id.slice(-1));
+    });
+     $('#image'+counter).click();
+     function nextpic()
+     {
+     counter++;
+     if(counter>tot)
+     {
+        counter = 1;
+     }
+     $('#image'+counter).click();
+     }
+     $('.next').click(function(){
+     nextpic();
+     });
+     function prevpic()
+     {
+        counter--;
+        if(counter<1)
+        {
+            counter = tot;
+        }
+        $('#image'+counter).click();
+     }
+     $('.prev').click(function()
+     {
+       prevpic();
+     });
+     $(document).keydown(function(e)
+     {
+        if(e.which == 37)
+        {
+            prevpic();
+        }
+        else if(e.which == 39)
+        {nextpic();}
+     });
+</script>
+
 
 {% endblock %}

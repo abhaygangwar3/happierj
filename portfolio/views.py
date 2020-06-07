@@ -9,5 +9,6 @@ def homepage(request):
 
 def picspage(request):
 
-    picsObj = PicsHappie.objects.order_by('-picdate')
-    return render(request, 'portfolio/happiepics.html', {'pics': picsObj})
+    picsObj = PicsHappie.objects.order_by('id')
+    i = list(range(picsObj.count()))
+    return render(request, 'portfolio/happiepics.html', {'pics': picsObj, 'count':i})
